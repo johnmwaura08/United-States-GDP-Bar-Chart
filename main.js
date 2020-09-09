@@ -24,18 +24,24 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
   .then((res) => {
     const { data } = res;
 
-    createBarChart(data)
+    createBarChart(data.map(d => [d[0].split('-')[0], d[1]])) //we're spliting it by the hyphens ,making a new array and getting the first item which is our year ( which initially is in format '2010-01-01')
   });
 
 function createBarChart(data) {
-  const width = 500;
+  const width = 800;
   const height = 500;
+  const padding = 30;
 
   const barWidth = width / data.length ;
 
-  const scale = d3.scaleLinear()
+  const yScale = d3.scaleLinear()
                 .domain([0, d3.max(data, d => d[1])])
                 .range([0, height])
+
+    
+   const xScale = d3.scaleLinear()
+            .domain([d3.min(data, d => d[0]), d3.max(data, d=> d[0])])
+            .range([0, width - 2 * padding])             
 
   const svg = d3
     .select("body")
@@ -49,7 +55,23 @@ function createBarChart(data) {
     .enter()
     .append("rect")
     .attr("x", (d, i) => i * barWidth  )
-    .attr("y", (d) => height - scale(d[1]))
+    .attr("y", (d) => height - yScale(d[1]))
     .attr("width", barWidth)
-    .attr("height", (d) => scale(d[1]) + "px");
+    .attr("height", (d) => yScale(d[1]) + "px");
+
+
+    //create an axis
+
+    const xAxis = d3.axisBottom(xScale)
+    const yAxis = d3.axisBottom(yScale)
+
+
+    svg.append('g')
+        .attr('transform', `translate(${padding},${height-padding})`)
+        .call(xAxis)
+
+
+
 }
+
+
