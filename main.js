@@ -5,10 +5,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
   .then(res => {
   const { data } = res;
   
-  createStuff(data.map(d => [d[0], d[1]]));
+  createBarChart(data.map(d => [d[0], d[1]]));
 })
 
-function createStuff(data) {
+function createBarChart(data) {
   const width = 800;
   const height = 400;
   const padding = 40;
