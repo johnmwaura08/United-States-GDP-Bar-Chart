@@ -1,27 +1,58 @@
 body {
+    
+    background-color: black;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    font-family: sans-serif ;
-    background-color: black;
-}
-svg {
-    border: 2px  solid black;
-    box-shadow: 2px 2px 4px rgba (0, 0, 0, 0.4);
-    background-color: white;
-}
-
-rect {
+    flex-direction: column;
+    font-family: sans-serif;
+  }
+  
+  h1 {
+    margin-top: -40px;
+    color: darkred;
+  }
+  
+  svg {
+    border: 2px solid black;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
+    background-color: #fff;
+  }
+  
+  rect {
     fill: blue;
-}
-rect:hover {
-    fill: white;
-}
-
-h1 {
-    
-        font-size : 40px;
-        color: darkred;
-}
+  }
+  
+  rect:hover {
+    opacity: 0.2;
+  }
+  
+  .container {
+    position: relative;
+  }
+  
+  .tooltip {
+    background-color: #eaeaea;
+    display: none;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.4);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    height: 70px;
+    width: 150px;
+    z-index: 100;
+    text-align: center;
+  }
+  
+  .tooltip.show {
+    display: flex;
+  }
+  
+  .tooltip small {
+    margin-bottom: 5px;
+  }
+  
